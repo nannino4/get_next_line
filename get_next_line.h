@@ -6,7 +6,7 @@
 /*   By: gcefalo <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/15 17:24:50 by gcefalo           #+#    #+#             */
-/*   Updated: 2021/01/16 12:59:38 by gcefalo          ###   ########.fr       */
+/*   Updated: 2021/01/16 17:36:51 by gcefalo          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,8 @@
 # include <sys/types.h>
 # include <sys/uio.h>
 # include <unistd.h>
+
+# define BUFFER_SIZE 2
 
 int				get_next_line(int fd, char **line);
 

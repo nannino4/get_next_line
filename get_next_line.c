@@ -6,18 +6,30 @@
 /*   By: gcefalo <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/15 17:24:41 by gcefalo           #+#    #+#             */
-/*   Updated: 2021/01/16 17:20:33 by gcefalo          ###   ########.fr       */
+/*   Updated: 2021/01/16 17:48:01 by gcefalo          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-int				get_next_line(int fd, char **line)
+#include "get_next_line.h"
+
+int		get_next_line(int fd, char **line)
 {
-	char		*s[255];
-	int			ret;
-	char		buffer[BUFF_SIZE];
+	static char		*s[255];
+	int				ret;
+	char			buffer[BUFFER_SIZE];
 
 //faccio i controlli sugli input per dare output -1
-	if ()
-	{
-	}
+
+
+/* loop: (s[fd] non contiene \n)
+ * leggo BUFFER_SIZE dal file_descriptor e metto in buffer
+ * unisco s[fd] e buffer
+ */
+
+
+/* copio s[fd] in *line fino al primo \n
+ * copio s[fd] in tmp dal primo \n in poi
+ * libero s[fd]
+ * s[fd] = tmp
+ */
 }
