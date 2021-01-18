@@ -6,7 +6,7 @@
 /*   By: gcefalo <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/15 17:24:50 by gcefalo           #+#    #+#             */
-/*   Updated: 2021/01/18 13:03:54 by gcefalo          ###   ########.fr       */
+/*   Updated: 2021/01/18 17:46:17 by gcefalo          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,7 @@
 # include <sys/types.h>
 # include <sys/uio.h>
 # include <unistd.h>
+# include <fcntl.h>
 
 # define BUFFER_SIZE 2
 
@@ -26,7 +27,7 @@ size_t			ft_strlcpy(char *dst, const char *src, size_t size);
 size_t			ft_strlcat(char *dst, const char *src, size_t size);
 char			*ft_substr(char const *s, unsigned int start, size_t len);
 char			*ft_strjoin(char const *s1, char const *s2);
-int				check_ch(char const *s, char c);
+int				find_ch(char const *s, char c);
 char			*ft_strdup(const char *s1);
 
 #endif

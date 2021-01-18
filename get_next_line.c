@@ -6,7 +6,7 @@
 /*   By: gcefalo <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/15 17:24:41 by gcefalo           #+#    #+#             */
-/*   Updated: 2021/01/18 13:08:49 by gcefalo          ###   ########.fr       */
+/*   Updated: 2021/01/18 17:39:03 by gcefalo          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,13 +54,8 @@ int			get_next_line(int fd, char **line)
 	int				ret;
 	char			buf[BUFFER_SIZE + 1];
 
-//faccio i controlli sugli input per dare output -1
-
-
-/* loop: (s[fd] non contiene \n)
- * leggo BUFFER_SIZE dal file_descriptor e metto in buffer
- * unisco s[fd] e buffer
- */
+	if (BUFFER_SIZE <= 0 || !line || fd < 0)
+		return (-1);
 	while (find_ch(s[fd], '\n') < 0 && (ret = read(fd, buf, BUFFER_SIZE)) > 0)
 	{
 		buf[ret] = 0;
@@ -74,12 +69,6 @@ int			get_next_line(int fd, char **line)
 		free(s[fd]);
 		s[fd] = tmp;
 	}
-
-/* copio s[fd] in *line fino al primo \n
- * copio s[fd] in tmp dal primo \n in poi
- * libero s[fd]
- * s[fd] = tmp
- */
 	if (ret > 0)
 	{
 		if (!(*line = ft_substr(s[fd], 0, find_ch(s[fd], '\n'))))
