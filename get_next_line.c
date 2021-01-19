@@ -6,7 +6,7 @@
 /*   By: gcefalo <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/15 17:24:41 by gcefalo           #+#    #+#             */
-/*   Updated: 2021/01/19 18:44:03 by gcefalo          ###   ########.fr       */
+/*   Updated: 2021/01/19 19:02:38 by gcefalo          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,6 +47,40 @@ int			find_ch(char const *s, char c)
 	return (-1);
 }
 
+int			set_line_and_return(int n, char **line, int fd, char **s)
+{
+	char	*tmp;
+
+	if (n == 0 && find_ch(s[fd], '\n') == -1)
+	{
+		if (!(*line = ft_substr(s[fd], 0, ft_strlen(s[fd]))))
+			return (-1);
+		free(s[fd]);
+		s[fd] = 0;
+		return (0);
+	}
+	else if (n >= 0 && find_ch(s[fd], '\n') != -1)
+	{
+		if (!(*line = ft_substr(s[fd], 0, find_ch(s[fd], '\n'))))
+			return (-1);
+		tmp = ft_substr(s[fd], find_ch(s[fd], '\n') + 1, ft_strlen(s[fd]));
+		free(s[fd]);
+		s[fd] = tmp;
+		return (1);
+	}
+	return (-1);
+}
+
+int			set_s(char **s, int fd)
+{
+	if (!s[fd])
+	{
+		if (!(s[fd] = ft_strdup("")))
+			return (-1);
+	}
+	return (0);
+}
+
 int			get_next_line(int fd, char **line)
 {
 	static char		*s[256];
@@ -58,11 +92,8 @@ int			get_next_line(int fd, char **line)
 		return (-1);
 	*line = 0;
 	n = 0;
-	if (!s[fd])
-	{
-		if (!(s[fd] = ft_strdup("")))
-			return (-1);
-	}
+	if (set_s(s, fd) == -1)
+		return (-1);
 	if (find_ch(s[fd], '\n') == -1)
 	{
 		while ((n = read(fd, buf, BUFFER_SIZE)) > 0)
@@ -73,26 +104,8 @@ int			get_next_line(int fd, char **line)
 			free(s[fd]);
 			s[fd] = tmp;
 			if (find_ch(s[fd], '\n') != -1)
-				break;
+				break ;
 		}
 	}
-	if (n == -1)
-		return (-1);
-	else if (n == 0 && find_ch(s[fd], '\n') == -1)
-	{
-		if (!(*line = ft_substr(s[fd], 0, ft_strlen(s[fd]))))
-			return (-1);
-		free(s[fd]);
-		s[fd] = 0;
-		return (0);
-	}
-	else if (find_ch(s[fd], '\n') != -1)
-	{
-		if (!(*line = ft_substr(s[fd], 0, find_ch(s[fd], '\n'))))
-			return (-1);
-		tmp = ft_substr(s[fd], find_ch(s[fd], '\n') + 1, ft_strlen(s[fd]));
-		free(s[fd]);
-		s[fd] = tmp;
-		return (1);
-	}
+	return (set_line_and_return(n, line, fd, s));
 }
