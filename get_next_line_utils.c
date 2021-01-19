@@ -6,7 +6,7 @@
 /*   By: gcefalo <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/15 17:25:01 by gcefalo           #+#    #+#             */
-/*   Updated: 2021/01/18 17:39:06 by gcefalo          ###   ########.fr       */
+/*   Updated: 2021/01/19 16:35:37 by gcefalo          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,7 @@ size_t			ft_strlen(const char *s)
 	return (i);
 }
 
-size_t		ft_strlcpy(char *dst, const char *src, size_t size)
+size_t			ft_strlcpy(char *dst, const char *src, size_t size)
 {
 	size_t			i;
 
